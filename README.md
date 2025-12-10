@@ -365,49 +365,54 @@ bash scripts/view_results.sh results/metrics
 
 
 ## Results Analysis
+*The plots, tables and plotting notebooks shown in this section can be found **[here](https://github.com/HQQHQ/Benchmark-PitchTracking-in-Non-ideal-Conditions/tree/main/ResultsForPresentation)**.*  
+
+*They are based on the data originate from **[this folder](https://github.com/HQQHQ/Benchmark-PitchTracking-in-Non-ideal-Conditions/tree/main/results/metrics)**.*
 
 ### Distortion Results
 
-| ![Distortion delta overall metrics](ResultsForPresentation/Dist_Results/delta_overall_table_highlight.png "Delta overall metrics by distortion level and model (highlighted)") | ![Distortion overall metrics](ResultsForPresentation/Dist_Results/overall_table_highlight.png "Overall accuracy table across distortion sources and models (highlighted)") |
+**Distortion delta overall metrics & Distortion overall metrics**
+| ![Distortion delta overall metrics](ResultsForPresentation/Dist_Results/delta_overall_table_highlight.png) | ![Distortion overall metrics](ResultsForPresentation/Dist_Results/overall_table_highlight.png) |
 | --- | --- |
 
 ![Distortion metric means](ResultsForPresentation/Dist_Results/metrics_dot_mean.png "Mean metric performance per model under distortion levels")
 
-![Distortion OA by level](ResultsForPresentation/Dist_Results/oa_level_dot_mean.png "Overall accuracy across distortion levels by model")
+| ![Distortion OA by level](ResultsForPresentation/Dist_Results/oa_level_dot_mean.png "Overall accuracy across distortion levels by model") | ![Distortion OA by source](ResultsForPresentation/Dist_Results/oa_source_dot_mean.png "Overall accuracy for vocal vs instrumental sources under distortion")|
+| --- | --- |
 
-![Distortion OA by source](ResultsForPresentation/Dist_Results/oa_source_dot_mean.png "Overall accuracy for vocal vs instrumental sources under distortion")
+#### Results Analysis
 
 Across all distortion levels, Basic Pitch consistently shows the highest robustness, maintaining stable accuracy with minimal performance drop. pYIN exhibits moderate robustness, degrading under heavy distortion but remaining more stable than CREPE. CREPE, despite its high pitch precision in clean conditions, is the most vulnerable to distortion—showing substantial decreases in overall accuracy and voicing recall. This robustness pattern (Basic Pitch > pYIN > CREPE) persists across both vocal and instrumental sources, confirming that model-specific weaknesses revealed in the metric profiles directly explain their behavior under non-ideal audio conditions.
 
 ### Noised Results
-
-| ![Noise delta overall metrics](ResultsForPresentation/Noise_Results/delta_overall_table_highlight.png "Delta overall metrics by noise type and SNR (highlighted)") | ![Noise overall metrics](ResultsForPresentation/Noise_Results/overall_table_highlight.png "Overall accuracy table across noise conditions and models (highlighted)") |
+**Noise delta overall metrics & Noise overall metrics**
+| ![Noise delta overall metrics](ResultsForPresentation/Noise_Results/delta_overall_table_highlight.png) | ![Noise overall metrics](ResultsForPresentation/Noise_Results/overall_table_highlight.png) |
 | --- | --- |
 
 ![Noise metric means](ResultsForPresentation/Noise_Results/metrics_dot_mean.png "Mean metric performance per model under noise conditions")
 
-![Noise OA by type](ResultsForPresentation/Noise_Results/oa_noise_dot_mean.png "Overall accuracy across room, street, and people noise by model")
+| ![Noise OA by type](ResultsForPresentation/Noise_Results/oa_noise_dot_mean.png "Overall accuracy across room, street, and people noise by model") | ![Noise OA by source](ResultsForPresentation/Noise_Results/oa_noise_source_dot_mean.png "Overall accuracy for vocal vs instrumental sources under noise")|
+| --- | --- |
 
-![Noise OA by source](ResultsForPresentation/Noise_Results/oa_noise_source_dot_mean.png "Overall accuracy for vocal vs instrumental sources under noise")
+| ![Noise OA by SNR](ResultsForPresentation/Noise_Results/oa_snr_dot_mean.png "Overall accuracy at 5 dB vs 15 dB SNR by model") | ![Noise OA by source (overall)](ResultsForPresentation/Noise_Results/oa_source_dot_mean.png "Overall accuracy for source types aggregated across noise conditions") |
+| --- | --- |
 
-![Noise OA by SNR](ResultsForPresentation/Noise_Results/oa_snr_dot_mean.png "Overall accuracy at 5 dB vs 15 dB SNR by model")
-
-![Noise OA by source (overall)](ResultsForPresentation/Noise_Results/oa_source_dot_mean.png "Overall accuracy for source types aggregated across noise conditions")
+#### Results Analysis
 
 When noise was added, the three models showed very different levels of robustness. Basic Pitch remained the most stable, with almost no drop in accuracy and even slight gains in voicing detection. CREPE, which performs well on clean audio, degraded sharply under noise, especially in voicing recall, showing strong sensitivity to disrupted harmonic patterns. Librosa showed moderate decreases across metrics but stayed more consistent than CREPE. Overall, Basic Pitch demonstrated the best robustness to noise, CREPE was accurate but fragile, and Librosa was steady but limited. This happens because Basic Pitch uses stable spectral features and note-level smoothing, CREPE relies heavily on clean periodicity cues, and Librosa’s simpler frequency estimation is less robust but also less easily destabilized.
 
 ### Tuned/Pitch Shifted Results
 
-| ![Tuning delta overall metrics](ResultsForPresentation/Tuned_Results/delta_overall_table_highlight.png "Delta overall metrics by pitch-shift magnitude and model (highlighted)") | ![Tuning overall metrics](ResultsForPresentation/Tuned_Results/overall_table_highlight.png "Overall accuracy table across tuning shifts and models (highlighted)") |
+**Tuning delta overall metrics & Tuning overall metrics**
+| ![Tuning delta overall metrics](ResultsForPresentation/Tuned_Results/delta_overall_table_highlight.png) | ![Tuning overall metrics](ResultsForPresentation/Tuned_Results/overall_table_highlight.png) |
 | --- | --- |
 
 ![Tuning metric means](ResultsForPresentation/Tuned_Results/metrics_dot_mean.png "Mean metric performance per model under tuning shifts")
 
-![Tuning OA by shift](ResultsForPresentation/Tuned_Results/oa_shift_dot_mean.png "Overall accuracy across pitch-shift magnitudes by model")
+| ![Tuning OA by shift](ResultsForPresentation/Tuned_Results/oa_shift_dot_mean.png "Overall accuracy across pitch-shift magnitudes by model")  |  ![Tuning OA by source (overall)](ResultsForPresentation/Tuned_Results/oa_source_dot_mean.png "Overall accuracy for source types aggregated across tuning shifts") |
+| --- | --- |
 
-![Tuning OA by source](ResultsForPresentation/Tuned_Results/oa_shift_source_dot_mean.png "Overall accuracy for vocal vs instrumental sources under pitch shifts")
-
-![Tuning OA by source (overall)](ResultsForPresentation/Tuned_Results/oa_source_dot_mean.png "Overall accuracy for source types aggregated across tuning shifts")
+#### Results Analysis
 
 When pitch shifts were applied, all models showed a decrease in accuracy. Basic Pitch remained the most stable, maintaining high accuracy and voicing recall under tuning variations. CREPE achieved good results on clean audio but dropped significantly when detuned, showing high sensitivity to pitch changes. Librosa performed less accurately overall but stayed relatively consistent. Overall, Basic Pitch demonstrated the best robustness to tuning variation, while CREPE was precise but fragile, and Librosa was steady but limited. This happens because Basic Pitch integrates both spectral and temporal features, CREPE depends too much on clean harmonic patterns, and Librosa relies on simpler frequency estimation that’s less affected by noise.
 
