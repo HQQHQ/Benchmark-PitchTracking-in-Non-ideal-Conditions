@@ -190,7 +190,9 @@ Output: `results/metrics/librosa_*.csv`
 
 ### 3. Generate Comparison Plots
 
-Run the plotting script to generate all comparison plots:
+#### Main Comparison Plots
+
+Run the main plotting script to generate comparison plots across experimental conditions:
 
 ```bash
 python3 evaluate/plot_results.py
@@ -201,6 +203,24 @@ This generates 4 plots (one for each metric), saved in `results/figures/`:
 - `rpa_comparison.png` - Raw Pitch Accuracy comparison
 - `rca_comparison.png` - Raw Chroma Accuracy comparison
 - `vr_comparison.png` - Voicing Recall comparison
+
+#### Additional Comparison Plots
+
+Run the additional plotting script to generate detailed comparisons:
+
+```bash
+python3 evaluate/plot_additional_comparisons.py
+```
+
+This generates two additional sets of comparison plots:
+
+**1. Instrument vs Vocal Comparison**
+- `oa_instrument_vocal.png`, `rpa_instrument_vocal.png`, `rca_instrument_vocal.png`, `vr_instrument_vocal.png`
+- Compares model performance on instrumental tracks vs vocal tracks across all conditions
+
+**3. Noise Types Comparison** (Room/Street/People)
+- `oa_noise_types.png`, `rpa_noise_types.png`, `rca_noise_types.png`, `vr_noise_types.png`
+- Compares model performance across different noise types (room, street, people)
 
 ---
 
@@ -213,19 +233,25 @@ The following table shows the average performance metrics across all experimenta
 | Model | Condition | OA | RPA | RCA | VR |
 |-------|-----------|----|----|----|----|
 | librosa | clean | 0.6589 | 0.8512 | 0.7966 | 0.7234 |
-| librosa | distortion | 0.6703 | 0.8646 | 0.8092 | 0.7259 |
+| librosa | distortion_light | 0.6749 | 0.8731 | 0.8193 | 0.7273 |
+| librosa | distortion_medium | 0.6612 | 0.8735 | 0.8192 | 0.7044 |
+| librosa | distortion_heavy | 0.6747 | 0.8469 | 0.7887 | 0.7460 |
 | librosa | noise_5db | 0.6453 | 0.7425 | 0.6696 | 0.7069 |
 | librosa | noise_15db | 0.6933 | 0.8463 | 0.7798 | 0.7542 |
 | librosa | pitch_shift_25cents | 0.6457 | 0.8073 | 0.7326 | 0.7281 |
 | librosa | pitch_shift_50cents | 0.4746 | 0.4712 | 0.4480 | 0.6972 |
 | crepe | clean | 0.5175 | 0.9607 | 0.9193 | 0.5403 |
-| crepe | distortion | 0.4789 | 0.9625 | 0.9206 | 0.4997 |
+| crepe | distortion_light | 0.4676 | 0.9693 | 0.9341 | 0.4852 |
+| crepe | distortion_medium | 0.4636 | 0.9672 | 0.9219 | 0.4790 |
+| crepe | distortion_heavy | 0.5058 | 0.9509 | 0.9054 | 0.5353 |
 | crepe | noise_5db | 0.4517 | 0.9142 | 0.7909 | 0.4997 |
 | crepe | noise_15db | 0.4656 | 0.9711 | 0.9174 | 0.4805 |
 | crepe | pitch_shift_25cents | 0.4606 | 0.9253 | 0.8018 | 0.4997 |
 | crepe | pitch_shift_50cents | 0.2157 | 0.4883 | 0.4825 | 0.4480 |
 | basic_pitch | clean | 0.7216 | 0.7923 | 0.7724 | 0.7978 |
-| basic_pitch | distortion | 0.7237 | 0.8098 | 0.7942 | 0.7914 |
+| basic_pitch | distortion_light | 0.7188 | 0.8103 | 0.7957 | 0.7831 |
+| basic_pitch | distortion_medium | 0.7294 | 0.8080 | 0.7920 | 0.7979 |
+| basic_pitch | distortion_heavy | 0.7231 | 0.8111 | 0.7948 | 0.7933 |
 | basic_pitch | noise_5db | 0.7599 | 0.7393 | 0.7149 | 0.8057 |
 | basic_pitch | noise_15db | 0.7649 | 0.7591 | 0.7319 | 0.8242 |
 | basic_pitch | pitch_shift_25cents | 0.7101 | 0.7308 | 0.7028 | 0.7943 |
@@ -233,19 +259,57 @@ The following table shows the average performance metrics across all experimenta
 
 ### Comparison Plots
 
-The following plots compare the performance of all three models across different experimental conditions:
+We generate **12 comparison plots** organized into 3 groups, each with 4 metrics (OA, RPA, RCA, VR):
 
-#### Overall Accuracy (OA)
+#### Group 1: Experimental Conditions Comparison
+
+These plots compare model performance across different experimental conditions (clean, distortion, noise levels, pitch shift):
+
+**Overall Accuracy (OA)**
 ![OA Comparison](results/figures/oa_comparison.png)
 
-#### Raw Pitch Accuracy (RPA)
+**Raw Pitch Accuracy (RPA)**
 ![RPA Comparison](results/figures/rpa_comparison.png)
 
-#### Raw Chroma Accuracy (RCA)
+**Raw Chroma Accuracy (RCA)**
 ![RCA Comparison](results/figures/rca_comparison.png)
 
-#### Voicing Recall (VR)
+**Voicing Recall (VR)**
 ![VR Comparison](results/figures/vr_comparison.png)
+
+**X-axis conditions**: Clean, Distortion Light, Distortion Medium, Distortion Heavy, Noise 5dB, Noise 15dB, Pitch Shift 25¢, Pitch Shift 50¢
+
+#### Group 2: Instrument vs Vocal Comparison
+
+These plots compare model performance on instrumental tracks vs vocal tracks (aggregated across all experimental conditions):
+
+**Overall Accuracy (OA): Instrument vs Vocal**
+![OA Instrument Vocal](results/figures/oa_instrument_vocal.png)
+
+**Raw Pitch Accuracy (RPA): Instrument vs Vocal**
+![RPA Instrument Vocal](results/figures/rpa_instrument_vocal.png)
+
+**Raw Chroma Accuracy (RCA): Instrument vs Vocal**
+![RCA Instrument Vocal](results/figures/rca_instrument_vocal.png)
+
+**Voicing Recall (VR): Instrument vs Vocal**
+![VR Instrument Vocal](results/figures/vr_instrument_vocal.png)
+
+#### Group 3: Noise Types Comparison
+
+These plots compare model performance across different noise types (Room, Street, People), aggregated across all noise conditions:
+
+**Overall Accuracy (OA) by Noise Type**
+![OA Noise Types](results/figures/oa_noise_types.png)
+
+**Raw Pitch Accuracy (RPA) by Noise Type**
+![RPA Noise Types](results/figures/rpa_noise_types.png)
+
+**Raw Chroma Accuracy (RCA) by Noise Type**
+![RCA Noise Types](results/figures/rca_noise_types.png)
+
+**Voicing Recall (VR) by Noise Type**
+![VR Noise Types](results/figures/vr_noise_types.png)
 
 ---
 
@@ -410,23 +474,50 @@ bash scripts/view_results.sh results/metrics
 
 Generated plots are located in `results/figures/` directory.
 
-### Plot Contents
+### Main Comparison Plots
 
-Each plot shows:
-- **X-axis**: 6 experimental conditions (clean, distortion, noise 5db, noise 15db, pitch shift 25cents, pitch shift 50cents)
+Each main plot shows:
+- **X-axis**: 8 experimental conditions 
+  - Clean (baseline)
+  - Distortion Light, Medium, Heavy (three intensity levels)
+  - Noise 5dB, Noise 15dB (two SNR levels)
+  - Pitch Shift 25¢, Pitch Shift 50¢ (two shift amounts)
 - **Y-axis**: Metric values (0-1)
 - **Data points**: Results for each audio file
 - **Colors**:
   - 🔵 Blue: Librosa
   - 🟠 Orange: CREPE
   - 🟢 Green: Basic Pitch
-- **Statistical lines**: Median and mean lines for each condition
+- **Statistical lines**: Median (solid) and mean (dashed) lines for each condition
+
+### Additional Comparison Plots
+
+**1. Distortion Levels Comparison**
+- **X-axis**: Distortion intensity levels (Light, Medium, Heavy)
+- Shows how each model performs under different distortion intensities
+- Helps identify which models are more robust to distortion
+
+**2. Instrument vs Vocal Comparison**
+- **X-axis**: Track type (Instrument, Vocal)
+- Aggregates results across all experimental conditions
+- Reveals if models perform differently on instrumental vs vocal tracks
+
+- **X-axis**: Track type (Instrument, Vocal)
+- Aggregates results across all experimental conditions
+- Reveals if models perform differently on instrumental vs vocal tracks
+
+#### Group 3: Noise Types Plots
+- **X-axis**: Noise types (Room, Street, People)
+- Aggregates results across all noise conditions (5dB and 15dB)
+- Compares performance across different environmental noise types
+- Helps understand which noise types are most challenging for each model
 
 ### How to Read the Plots
 
 1. **Overall Performance**: Compare different algorithms' performance across conditions
 2. **Robustness**: Observe performance degradation under noise, distortion, etc.
 3. **Stability**: Observe algorithm stability through data point distributions
+4. **Specialization**: Identify if models perform better on specific track types or conditions
 
 ---
 
