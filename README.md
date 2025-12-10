@@ -8,6 +8,7 @@ The goal of this project is to evaluate how pitch tracking models behave under d
 
 ## Work Division  
 In this final group project:
+
 **Heqi** was responsible for the overall planning, the dataset processing pipeline, adding noise and tuning perturbations, and the final analysis of the results under Noised conditions.
 
 **Linhan** handled the distortion part in the dataset processing, recorded the room-noise samples, and conducted the final analysis of the results under Tuning conditions.
