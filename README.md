@@ -369,6 +369,36 @@ bash scripts/view_results.sh results/metrics
 
 *They are based on the data originate from **[this folder](https://github.com/HQQHQ/Benchmark-PitchTracking-in-Non-ideal-Conditions/tree/main/results/metrics)**.*
 
+The following table shows the average performance metrics across all experimental conditions:
+
+| Model | Condition | OA | RPA | RCA | VR |
+|-------|-----------|----|----|----|----|
+| librosa | clean | 0.6589 | 0.8512 | 0.7966 | 0.7234 |
+| librosa | distortion_light | 0.6749 | 0.8731 | 0.8193 | 0.7273 |
+| librosa | distortion_medium | 0.6612 | 0.8735 | 0.8192 | 0.7044 |
+| librosa | distortion_heavy | 0.6747 | 0.8469 | 0.7887 | 0.7460 |
+| librosa | noise_5db | 0.6453 | 0.7425 | 0.6696 | 0.7069 |
+| librosa | noise_15db | 0.6933 | 0.8463 | 0.7798 | 0.7542 |
+| librosa | pitch_shift_25cents | 0.6457 | 0.8073 | 0.7326 | 0.7281 |
+| librosa | pitch_shift_50cents | 0.4746 | 0.4712 | 0.4480 | 0.6972 |
+| crepe | clean | 0.5175 | 0.9607 | 0.9193 | 0.5403 |
+| crepe | distortion_light | 0.4676 | 0.9693 | 0.9341 | 0.4852 |
+| crepe | distortion_medium | 0.4636 | 0.9672 | 0.9219 | 0.4790 |
+| crepe | distortion_heavy | 0.5058 | 0.9509 | 0.9054 | 0.5353 |
+| crepe | noise_5db | 0.4517 | 0.9142 | 0.7909 | 0.4997 |
+| crepe | noise_15db | 0.4656 | 0.9711 | 0.9174 | 0.4805 |
+| crepe | pitch_shift_25cents | 0.4606 | 0.9253 | 0.8018 | 0.4997 |
+| crepe | pitch_shift_50cents | 0.2157 | 0.4883 | 0.4825 | 0.4480 |
+| basic_pitch | clean | 0.7216 | 0.7923 | 0.7724 | 0.7978 |
+| basic_pitch | distortion_light | 0.7188 | 0.8103 | 0.7957 | 0.7831 |
+| basic_pitch | distortion_medium | 0.7294 | 0.8080 | 0.7920 | 0.7979 |
+| basic_pitch | distortion_heavy | 0.7231 | 0.8111 | 0.7948 | 0.7933 |
+| basic_pitch | noise_5db | 0.7599 | 0.7393 | 0.7149 | 0.8057 |
+| basic_pitch | noise_15db | 0.7649 | 0.7591 | 0.7319 | 0.8242 |
+| basic_pitch | pitch_shift_25cents | 0.7101 | 0.7308 | 0.7028 | 0.7943 |
+| basic_pitch | pitch_shift_50cents | 0.5826 | 0.4267 | 0.4026 | 0.7787 |
+
+
 ### 1. Distortion Results
 
 **Distortion delta overall metrics & Distortion overall metrics**
