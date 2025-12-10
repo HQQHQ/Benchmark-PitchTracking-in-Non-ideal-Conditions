@@ -26,6 +26,8 @@ In this final group project:
 All processing is based on the pitch subset of the **MedleyDB** dataset  
 👉 https://medleydb.weebly.com/  
 
+All data processing codes can be found in [this folder](https://github.com/HQQHQ/Benchmark-PitchTracking-in-Non-ideal-Conditions/tree/main/DataProcess)
+
 For each augmentation, we maintain the original ratio of vocal and instrumental tracks.  
 Vocal and instrumental tracks are separated and evenly split across the augmentation levels or catagories.
 
