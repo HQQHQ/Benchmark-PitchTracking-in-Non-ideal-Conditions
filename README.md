@@ -239,6 +239,9 @@ This generates two additional sets of comparison plots:
 
 ## Experimental Results
 
+<u>*The plots, tables and plotting notebooks used in the **final presentation** can be found **[here](https://github.com/HQQHQ/Benchmark-PitchTracking-in-Non-ideal-Conditions/tree/main/ResultsForPresentation)**.* </u> 
+Although they differ slightly from the plots shown in this section in terms of visualization style and arrangement, they are based on the **same underlying data**, all of which originate from **[this folder](https://github.com/HQQHQ/Benchmark-PitchTracking-in-Non-ideal-Conditions/tree/main/results/metrics)**.
+
 ### Summary Table
 
 The following table shows the average performance metrics across all experimental conditions:
