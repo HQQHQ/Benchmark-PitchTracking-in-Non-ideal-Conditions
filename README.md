@@ -205,135 +205,6 @@ python3 evaluate/evaluate_librosa.py
 ```
 Output: `results/metrics/librosa_*.csv`
 
-### 3. Generate Comparison Plots
-
-#### Main Comparison Plots
-
-Run the main plotting script to generate comparison plots across experimental conditions:
-
-```bash
-python3 evaluate/plot_results.py
-```
-
-This generates 4 plots (one for each metric), saved in `results/figures/`:
-- `oa_comparison.png` - Overall Accuracy comparison
-- `rpa_comparison.png` - Raw Pitch Accuracy comparison
-- `rca_comparison.png` - Raw Chroma Accuracy comparison
-- `vr_comparison.png` - Voicing Recall comparison
-
-#### Additional Comparison Plots
-
-Run the additional plotting script to generate detailed comparisons:
-
-```bash
-python3 evaluate/plot_additional_comparisons.py
-```
-
-This generates two additional sets of comparison plots:
-
-**1. Instrument vs Vocal Comparison**
-- `oa_instrument_vocal.png`, `rpa_instrument_vocal.png`, `rca_instrument_vocal.png`, `vr_instrument_vocal.png`
-- Compares model performance on instrumental tracks vs vocal tracks across all conditions
-
-**3. Noise Types Comparison** (Room/Street/People)
-- `oa_noise_types.png`, `rpa_noise_types.png`, `rca_noise_types.png`, `vr_noise_types.png`
-- Compares model performance across different noise types (room, street, people)
-
----
-
-## Experimental Results
-
-*The plots, tables and plotting notebooks used in the **final presentation** can be found **[here](https://github.com/HQQHQ/Benchmark-PitchTracking-in-Non-ideal-Conditions/tree/main/ResultsForPresentation)**.*  
-
-*Although they differ slightly from the plots shown in this section in terms of visualization style and arrangement, they are based on the **same underlying data**, all of which originate from **[this folder](https://github.com/HQQHQ/Benchmark-PitchTracking-in-Non-ideal-Conditions/tree/main/results/metrics)**.*
-
-### Summary Table
-
-The following table shows the average performance metrics across all experimental conditions:
-
-| Model | Condition | OA | RPA | RCA | VR |
-|-------|-----------|----|----|----|----|
-| librosa | clean | 0.6589 | 0.8512 | 0.7966 | 0.7234 |
-| librosa | distortion_light | 0.6749 | 0.8731 | 0.8193 | 0.7273 |
-| librosa | distortion_medium | 0.6612 | 0.8735 | 0.8192 | 0.7044 |
-| librosa | distortion_heavy | 0.6747 | 0.8469 | 0.7887 | 0.7460 |
-| librosa | noise_5db | 0.6453 | 0.7425 | 0.6696 | 0.7069 |
-| librosa | noise_15db | 0.6933 | 0.8463 | 0.7798 | 0.7542 |
-| librosa | pitch_shift_25cents | 0.6457 | 0.8073 | 0.7326 | 0.7281 |
-| librosa | pitch_shift_50cents | 0.4746 | 0.4712 | 0.4480 | 0.6972 |
-| crepe | clean | 0.5175 | 0.9607 | 0.9193 | 0.5403 |
-| crepe | distortion_light | 0.4676 | 0.9693 | 0.9341 | 0.4852 |
-| crepe | distortion_medium | 0.4636 | 0.9672 | 0.9219 | 0.4790 |
-| crepe | distortion_heavy | 0.5058 | 0.9509 | 0.9054 | 0.5353 |
-| crepe | noise_5db | 0.4517 | 0.9142 | 0.7909 | 0.4997 |
-| crepe | noise_15db | 0.4656 | 0.9711 | 0.9174 | 0.4805 |
-| crepe | pitch_shift_25cents | 0.4606 | 0.9253 | 0.8018 | 0.4997 |
-| crepe | pitch_shift_50cents | 0.2157 | 0.4883 | 0.4825 | 0.4480 |
-| basic_pitch | clean | 0.7216 | 0.7923 | 0.7724 | 0.7978 |
-| basic_pitch | distortion_light | 0.7188 | 0.8103 | 0.7957 | 0.7831 |
-| basic_pitch | distortion_medium | 0.7294 | 0.8080 | 0.7920 | 0.7979 |
-| basic_pitch | distortion_heavy | 0.7231 | 0.8111 | 0.7948 | 0.7933 |
-| basic_pitch | noise_5db | 0.7599 | 0.7393 | 0.7149 | 0.8057 |
-| basic_pitch | noise_15db | 0.7649 | 0.7591 | 0.7319 | 0.8242 |
-| basic_pitch | pitch_shift_25cents | 0.7101 | 0.7308 | 0.7028 | 0.7943 |
-| basic_pitch | pitch_shift_50cents | 0.5826 | 0.4267 | 0.4026 | 0.7787 |
-
-### Comparison Plots
-
-We generate **12 comparison plots** organized into 3 groups, each with 4 metrics (OA, RPA, RCA, VR):
-
-#### Group 1: Experimental Conditions Comparison
-
-These plots compare model performance across different experimental conditions (clean, distortion, noise levels, pitch shift):
-
-**Overall Accuracy (OA)**
-![OA Comparison](results/figures/oa_comparison.png)
-
-**Raw Pitch Accuracy (RPA)**
-![RPA Comparison](results/figures/rpa_comparison.png)
-
-**Raw Chroma Accuracy (RCA)**
-![RCA Comparison](results/figures/rca_comparison.png)
-
-**Voicing Recall (VR)**
-![VR Comparison](results/figures/vr_comparison.png)
-
-**X-axis conditions**: Clean, Distortion Light, Distortion Medium, Distortion Heavy, Noise 5dB, Noise 15dB, Pitch Shift 25¢, Pitch Shift 50¢
-
-#### Group 2: Instrument vs Vocal Comparison
-
-These plots compare model performance on instrumental tracks vs vocal tracks (aggregated across all experimental conditions):
-
-**Overall Accuracy (OA): Instrument vs Vocal**
-![OA Instrument Vocal](results/figures/oa_instrument_vocal.png)
-
-**Raw Pitch Accuracy (RPA): Instrument vs Vocal**
-![RPA Instrument Vocal](results/figures/rpa_instrument_vocal.png)
-
-**Raw Chroma Accuracy (RCA): Instrument vs Vocal**
-![RCA Instrument Vocal](results/figures/rca_instrument_vocal.png)
-
-**Voicing Recall (VR): Instrument vs Vocal**
-![VR Instrument Vocal](results/figures/vr_instrument_vocal.png)
-
-#### Group 3: Noise Types Comparison
-
-These plots compare model performance across different noise types (Room, Street, People), aggregated across all noise conditions:
-
-**Overall Accuracy (OA) by Noise Type**
-![OA Noise Types](results/figures/oa_noise_types.png)
-
-**Raw Pitch Accuracy (RPA) by Noise Type**
-![RPA Noise Types](results/figures/rpa_noise_types.png)
-
-**Raw Chroma Accuracy (RCA) by Noise Type**
-![RCA Noise Types](results/figures/rca_noise_types.png)
-
-**Voicing Recall (VR) by Noise Type**
-![VR Noise Types](results/figures/vr_noise_types.png)
-
----
-
 ## Prediction Results
 
 ### Raw Output Formats
@@ -491,68 +362,52 @@ bash scripts/view_results.sh results/metrics
 
 ---
 
-## Plot Interpretation
 
-Generated plots are located in `results/figures/` directory.
-
-### Main Comparison Plots
-
-Each main plot shows:
-- **X-axis**: 8 experimental conditions 
-  - Clean (baseline)
-  - Distortion Light, Medium, Heavy (three intensity levels)
-  - Noise 5dB, Noise 15dB (two SNR levels)
-  - Pitch Shift 25¢, Pitch Shift 50¢ (two shift amounts)
-- **Y-axis**: Metric values (0-1)
-- **Data points**: Results for each audio file
-- **Colors**:
-  - 🔵 Blue: Librosa
-  - 🟠 Orange: CREPE
-  - 🟢 Green: Basic Pitch
-- **Statistical lines**: Median (solid) and mean (dashed) lines for each condition
-
-### Additional Comparison Plots
-
-**1. Distortion Levels Comparison**
-- **X-axis**: Distortion intensity levels (Light, Medium, Heavy)
-- Shows how each model performs under different distortion intensities
-- Helps identify which models are more robust to distortion
-
-**2. Instrument vs Vocal Comparison**
-- **X-axis**: Track type (Instrument, Vocal)
-- Aggregates results across all experimental conditions
-- Reveals if models perform differently on instrumental vs vocal tracks
-
-- **X-axis**: Track type (Instrument, Vocal)
-- Aggregates results across all experimental conditions
-- Reveals if models perform differently on instrumental vs vocal tracks
-
-#### Group 3: Noise Types Plots
-- **X-axis**: Noise types (Room, Street, People)
-- Aggregates results across all noise conditions (5dB and 15dB)
-- Compares performance across different environmental noise types
-- Helps understand which noise types are most challenging for each model
-
-### How to Read the Plots
-
-1. **Overall Performance**: Compare different algorithms' performance across conditions
-2. **Robustness**: Observe performance degradation under noise, distortion, etc.
-3. **Stability**: Observe algorithm stability through data point distributions
-4. **Specialization**: Identify if models perform better on specific track types or conditions
-
----
 
 ## Results Analysis
 
 ### Distortion Results
 
+| ![Distortion delta overall metrics](ResultsForPresentation/Dist_Results/delta_overall_table_highlight.png "Delta overall metrics by distortion level and model (highlighted)") | ![Distortion overall metrics](ResultsForPresentation/Dist_Results/overall_table_highlight.png "Overall accuracy table across distortion sources and models (highlighted)") |
+| --- | --- |
+
+![Distortion metric means](ResultsForPresentation/Dist_Results/metrics_dot_mean.png "Mean metric performance per model under distortion levels")
+
+![Distortion OA by level](ResultsForPresentation/Dist_Results/oa_level_dot_mean.png "Overall accuracy across distortion levels by model")
+
+![Distortion OA by source](ResultsForPresentation/Dist_Results/oa_source_dot_mean.png "Overall accuracy for vocal vs instrumental sources under distortion")
+
 Across all distortion levels, Basic Pitch consistently shows the highest robustness, maintaining stable accuracy with minimal performance drop. pYIN exhibits moderate robustness, degrading under heavy distortion but remaining more stable than CREPE. CREPE, despite its high pitch precision in clean conditions, is the most vulnerable to distortion—showing substantial decreases in overall accuracy and voicing recall. This robustness pattern (Basic Pitch > pYIN > CREPE) persists across both vocal and instrumental sources, confirming that model-specific weaknesses revealed in the metric profiles directly explain their behavior under non-ideal audio conditions.
 
 ### Noised Results
 
+| ![Noise delta overall metrics](ResultsForPresentation/Noise_Results/delta_overall_table_highlight.png "Delta overall metrics by noise type and SNR (highlighted)") | ![Noise overall metrics](ResultsForPresentation/Noise_Results/overall_table_highlight.png "Overall accuracy table across noise conditions and models (highlighted)") |
+| --- | --- |
+
+![Noise metric means](ResultsForPresentation/Noise_Results/metrics_dot_mean.png "Mean metric performance per model under noise conditions")
+
+![Noise OA by type](ResultsForPresentation/Noise_Results/oa_noise_dot_mean.png "Overall accuracy across room, street, and people noise by model")
+
+![Noise OA by source](ResultsForPresentation/Noise_Results/oa_noise_source_dot_mean.png "Overall accuracy for vocal vs instrumental sources under noise")
+
+![Noise OA by SNR](ResultsForPresentation/Noise_Results/oa_snr_dot_mean.png "Overall accuracy at 5 dB vs 15 dB SNR by model")
+
+![Noise OA by source (overall)](ResultsForPresentation/Noise_Results/oa_source_dot_mean.png "Overall accuracy for source types aggregated across noise conditions")
+
 When noise was added, the three models showed very different levels of robustness. Basic Pitch remained the most stable, with almost no drop in accuracy and even slight gains in voicing detection. CREPE, which performs well on clean audio, degraded sharply under noise, especially in voicing recall, showing strong sensitivity to disrupted harmonic patterns. Librosa showed moderate decreases across metrics but stayed more consistent than CREPE. Overall, Basic Pitch demonstrated the best robustness to noise, CREPE was accurate but fragile, and Librosa was steady but limited. This happens because Basic Pitch uses stable spectral features and note-level smoothing, CREPE relies heavily on clean periodicity cues, and Librosa’s simpler frequency estimation is less robust but also less easily destabilized.
 
 ### Tuned/Pitch Shifted Results
+
+| ![Tuning delta overall metrics](ResultsForPresentation/Tuned_Results/delta_overall_table_highlight.png "Delta overall metrics by pitch-shift magnitude and model (highlighted)") | ![Tuning overall metrics](ResultsForPresentation/Tuned_Results/overall_table_highlight.png "Overall accuracy table across tuning shifts and models (highlighted)") |
+| --- | --- |
+
+![Tuning metric means](ResultsForPresentation/Tuned_Results/metrics_dot_mean.png "Mean metric performance per model under tuning shifts")
+
+![Tuning OA by shift](ResultsForPresentation/Tuned_Results/oa_shift_dot_mean.png "Overall accuracy across pitch-shift magnitudes by model")
+
+![Tuning OA by source](ResultsForPresentation/Tuned_Results/oa_shift_source_dot_mean.png "Overall accuracy for vocal vs instrumental sources under pitch shifts")
+
+![Tuning OA by source (overall)](ResultsForPresentation/Tuned_Results/oa_source_dot_mean.png "Overall accuracy for source types aggregated across tuning shifts")
 
 When pitch shifts were applied, all models showed a decrease in accuracy. Basic Pitch remained the most stable, maintaining high accuracy and voicing recall under tuning variations. CREPE achieved good results on clean audio but dropped significantly when detuned, showing high sensitivity to pitch changes. Librosa performed less accurately overall but stayed relatively consistent. Overall, Basic Pitch demonstrated the best robustness to tuning variation, while CREPE was precise but fragile, and Librosa was steady but limited. This happens because Basic Pitch integrates both spectral and temporal features, CREPE depends too much on clean harmonic patterns, and Librosa relies on simpler frequency estimation that’s less affected by noise.
 
