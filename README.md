@@ -1,5 +1,7 @@
 # Benchmark-PitchTracking-in-Non-ideal-Conditions
 
+The **Presentation Slides** can be found [here](https://docs.google.com/presentation/d/18ffY_ufv9FvHBbwAjxbAiSEgZJcs7sq6YjqP5kJFEmE/edit?usp=sharing)
+
 ## Overview  
 This repository contains the code and data pipelines for our **Pitch Tracking Benchmark Project**, developed as part of the Fall 2025 final project for the Music Information Retrieval course at NYU.  
 The goal of this project is to evaluate how pitch tracking models behave under different real-world recording conditions. We focus on three types of augmentations—**noise**, **distortion**, and **tuning changes**—and apply them to the MedleyDB-Pitch dataset. The processed audio and updated annotations are then used to benchmark models such as **CREPE** and **BasicPitch**.
