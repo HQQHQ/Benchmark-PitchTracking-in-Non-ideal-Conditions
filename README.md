@@ -534,6 +534,20 @@ Each main plot shows:
 
 ---
 
+## Results Analysis
+
+### Distortion Results
+
+### Noised Results
+
+When noise was added, the three models showed very different levels of robustness. Basic Pitch remained the most stable, with almost no drop in accuracy and even slight gains in voicing detection. CREPE, which performs well on clean audio, degraded sharply under noise, especially in voicing recall, showing strong sensitivity to disrupted harmonic patterns. Librosa showed moderate decreases across metrics but stayed more consistent than CREPE. Overall, Basic Pitch demonstrated the best robustness to noise, CREPE was accurate but fragile, and Librosa was steady but limited. This happens because Basic Pitch uses stable spectral features and note-level smoothing, CREPE relies heavily on clean periodicity cues, and Librosa’s simpler frequency estimation is less robust but also less easily destabilized.
+
+### Tuned/Pitch Shifted Results
+
+When pitch shifts were applied, all models showed a decrease in accuracy. Basic Pitch remained the most stable, maintaining high accuracy and voicing recall under tuning variations. CREPE achieved good results on clean audio but dropped significantly when detuned, showing high sensitivity to pitch changes. Librosa performed less accurately overall but stayed relatively consistent. Overall, Basic Pitch demonstrated the best robustness to tuning variation, while CREPE was precise but fragile, and Librosa was steady but limited. This happens because Basic Pitch integrates both spectral and temporal features, CREPE depends too much on clean harmonic patterns, and Librosa relies on simpler frequency estimation that’s less affected by noise.
+
+---
+
 ## Additional Tools
 
 ### Renormalize All Predictions
