@@ -546,6 +546,8 @@ Each main plot shows:
 
 ### Distortion Results
 
+Across all distortion levels, Basic Pitch consistently shows the highest robustness, maintaining stable accuracy with minimal performance drop. pYIN exhibits moderate robustness, degrading under heavy distortion but remaining more stable than CREPE. CREPE, despite its high pitch precision in clean conditions, is the most vulnerable to distortion—showing substantial decreases in overall accuracy and voicing recall. This robustness pattern (Basic Pitch > pYIN > CREPE) persists across both vocal and instrumental sources, confirming that model-specific weaknesses revealed in the metric profiles directly explain their behavior under non-ideal audio conditions.
+
 ### Noised Results
 
 When noise was added, the three models showed very different levels of robustness. Basic Pitch remained the most stable, with almost no drop in accuracy and even slight gains in voicing detection. CREPE, which performs well on clean audio, degraded sharply under noise, especially in voicing recall, showing strong sensitivity to disrupted harmonic patterns. Librosa showed moderate decreases across metrics but stayed more consistent than CREPE. Overall, Basic Pitch demonstrated the best robustness to noise, CREPE was accurate but fragile, and Librosa was steady but limited. This happens because Basic Pitch uses stable spectral features and note-level smoothing, CREPE relies heavily on clean periodicity cues, and Librosa’s simpler frequency estimation is less robust but also less easily destabilized.
